@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>proj-bot：一个服务产品、测试与研发的团队助手 · 野生构建 / Wild Builds</title><meta name="description" content="proj-bot：一个服务产品、测试与研发的团队助手"><meta property="og:title" content="proj-bot：一个服务产品、测试与研发的团队助手"><meta property="og:type" content="article"><meta name="theme-color" content="#fdfdfd"><meta name="content-version" content="f7c2c054e005edff156679b38e1b79b0c75f0eddd93b6a3792a4bc49cfdc7140"><link rel="canonical" href="https://charlieyong.github.io/wild-builds/zh/posts/introducing-proj-bot/"><link rel="alternate" type="application/rss+xml" title="野生构建 / Wild Builds" href="/wild-builds/rss.xml"><link rel="alternate" hreflang="en" href="/wild-builds/en/posts/introducing-proj-bot/"><style>:root{color-scheme:light;--background:#fdfdfd;--foreground:#282728;--accent:#006cac;--muted:#e6e6e6;--muted-foreground:#6b7280;--border:#ece9e9;font-synthesis:none;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,PingFang SC,Microsoft YaHei,monospace}@media (prefers-color-scheme:dark){:root{color-scheme:dark;--background:#212737;--foreground:#eaedf3;--accent:#ff6b01;--muted:#343f60;--muted-foreground:#afb9ca;--border:#48516b}}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{background:var(--background);color:var(--foreground);margin:0;font-size:16px;line-height:1.85}a{color:var(--accent);text-underline-offset:5px;text-decoration:none}a:hover{text-decoration:underline dashed}a:focus-visible,summary:focus-visible{outline:2px dashed var(--accent);outline-offset:5px}.wrap{max-width:800px;margin-inline:auto;padding-inline:28px}.site-header{border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:24px;padding-block:26px;display:flex}.site-title{letter-spacing:-.05em;color:var(--foreground);font-size:22px;font-weight:700;line-height:1.5;text-decoration:none}.site-title small{letter-spacing:.12em;color:var(--muted-foreground);font-size:10px;font-weight:400;display:block}.site-nav{flex-shrink:0;align-items:center;gap:23px;font-size:14px;display:flex}.site-nav a{color:var(--foreground)}main{min-height:65vh;padding-block:58px 64px}h1,h2,h3{letter-spacing:-.04em;line-height:1.5}h1{margin:0 0 26px;font-size:clamp(32px,5vw,43px);font-weight:700}h2{margin:0 0 24px;font-size:23px}h3{margin:0 0 10px;font-size:18px}p{margin:0 0 16px}.intro{font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:18px;line-height:1.95}.eyebrow,.byline,.muted{color:var(--muted-foreground);font-size:12px}.eyebrow{letter-spacing:.12em;margin:0 0 18px}.english-intro{color:var(--muted-foreground);margin-top:20px;font-size:14px}.socials{align-items:center;gap:23px;margin-top:26px;font-size:13px;display:flex}.section{border-top:1px solid var(--border);margin-top:38px;padding-top:34px}.post-list{padding:0;list-style:none}.post-card{padding:0 0 28px}.post-card h3{color:var(--accent)}.post-card p{color:var(--muted-foreground);font-size:13px}.post-languages{gap:15px;margin-top:8px;font-size:12px;display:flex}.empty-state{color:var(--muted-foreground);padding:24px 0 16px;font-size:14px}.empty-state strong{color:var(--foreground);margin-bottom:6px;font-size:16px;font-weight:500;display:block}.topics{color:var(--muted-foreground);flex-wrap:wrap;gap:10px;font-size:12px;display:flex}.topics span{border-bottom:1px dashed var(--border);padding-bottom:3px}.site-footer{border-top:1px solid var(--border);color:var(--muted-foreground);justify-content:space-between;align-items:flex-start;gap:20px;padding-block:24px 36px;font-size:11px;display:flex}.site-footer p{margin:0}.site-footer a{color:var(--muted-foreground)}.prose{overflow-wrap:anywhere;font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:17px;line-height:1.95}.prose h2{margin-top:2.3em;font-family:ui-monospace,Menlo,PingFang SC,monospace}.prose h3{margin-top:1.7em}.prose a{text-decoration:underline dashed}.prose pre{background:var(--muted);border-radius:5px;padding:20px;font-size:13px;line-height:1.65;overflow-x:auto}.prose code{font-family:ui-monospace,Menlo,monospace}.prose :not(pre)>code{background:var(--muted);border-radius:3px;padding:2px 5px;font-size:.85em}.prose blockquote{border-left:3px solid var(--accent);color:var(--muted-foreground);margin:26px 0;padding:3px 0 3px 20px}.prose img{max-width:100%;height:auto}.prose table{border-collapse:collapse;font-size:14px;display:block;overflow:auto}.prose td,.prose th{border-bottom:1px solid var(--border);padding:10px}.article-header{margin-bottom:32px}.article-header h1{margin-bottom:18px;font-size:clamp(28px,4.5vw,38px);line-height:1.55}.back-link{margin-bottom:25px;font-size:12px;display:inline-block}.skip{background:var(--background);padding:8px;position:absolute;top:-100px}.skip:focus{top:5px}.article-footer{border-top:1px solid var(--border);margin-top:48px;padding-top:24px;font-size:13px}.language{font-size:12px}.about-copy{color:var(--muted-foreground);font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:14px;line-height:1.9}@media (width<=600px){.wrap{padding-inline:22px}.site-header{gap:15px;padding-block:20px}.site-title{font-size:19px}.site-nav{gap:15px;font-size:12px}main{padding-block:40px 48px}.intro{font-size:17px}h1{font-size:34px}.site-footer{flex-direction:column;gap:9px}.prose{font-size:16px}.prose pre{margin-inline:-5px;padding:15px}.article-header h1{font-size:28px}.socials{gap:19px}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{.site-nav,.socials,.site-footer{display:none}body{color:#000;background:#fff}.wrap{max-width:none}.prose pre{white-space:pre-wrap}}
+</style></head><body><a class="skip" href="#main-content">跳转到正文 / Skip to content</a><div class="wrap"><header class="site-header"><a class="site-title" href="/wild-builds/">野生构建<small>Wild Builds / CHARLIE</small></a><nav class="site-nav" aria-label="主导航"><a href="/wild-builds/#articles">文章</a><a href="/wild-builds/#about">关于</a><a class="language" href="/wild-builds/en/posts/introducing-proj-bot/">EN</a></nav></header><main id="main-content"><a class="back-link" href="/wild-builds/">← 返回文章列表</a><header class="article-header"><h1>proj-bot：一个服务产品、测试与研发的团队助手</h1><p class="byline">charlie · <time datetime="2026-11-14T07:18:48.543Z">2026-11-14</time>· 中文</p></header><article class="prose"><h2>团队里的工作助手</h2>
+<p>proj-bot 是团队飞书里的工作助手：成员在会话中提出需求，模型理解目标、选择工具，宿主核验执行资格，交回答案、操作结果或文件。</p>
+<table>
+<thead>
+<tr>
+<th>谁在用</th>
+<th>交给它的工作</th>
+<th>收到什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>产品策划</td>
+<td>查规则、找配置、确认生效条件</td>
+<td>对应配置与实现逻辑的解释</td>
+</tr>
+<tr>
+<td>测试</td>
+<td>准备测试状态、核对截图与数据</td>
+<td>操作结果、状态回读和差异说明</td>
+</tr>
+<tr>
+<td>研发</td>
+<td>定位异常、检查重复请求处理</td>
+<td>绑定源码版本的分析与问题报告</td>
+</tr>
+</tbody></table>
+<p>这些请求往往很具体，却横跨资料、配置、环境和代码。做 proj-bot 的出发点，就是让成员从一个入口交代目标，把找工具、串步骤和整理结果的重复工作交给助手。</p>
+<h2>核心设计：模型选工具，宿主管执行</h2>
+<p>模型理解需求、选择能力；<strong>执行资格由模型进程之外的宿主服务检查</strong>。飞书接入层提供可信会话身份，Wrapper 在每轮调用中注入当前上下文，SQLite 保存目标、状态和随任务信息更新的任务版本。</p>
+<p><img src="/wild-builds/assets/introducing-proj-bot/proj-bot-architecture-zh.webp" alt="组件关系：飞书经接入层连接 Codex，工具请求交给宿主授权服务；宿主分别访问任务库和业务工具及源码服务，结果沿调用链返回。" /></p>
+<p>诊断与操作等主要业务调用需通过宿主的任务检查。版本检查用于防止更换目标后继续复用旧调用；查找账号等补参查询有单独入口，不能据此取得写入资格。</p>
+<table>
+<thead>
+<tr>
+<th>检查条件</th>
+<th>宿主的处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任务信息不齐，或调用携带的版本已变化</td>
+<td>拒绝调用，等待补参或重新确认</td>
+</tr>
+<tr>
+<td>任务不是处于 <code>running</code> 状态的操作类任务，或目标只允许读取</td>
+<td>拒绝写入</td>
+</tr>
+</tbody></table>
+<p>写操作还按环境与资源范围协调并发，冲突时等待或返回占用状态。源码分析使用按提交生成的只读视图，避免多个任务切换同一份工作目录。</p>
+<p>这里的取舍是增加显式绑定与检查步骤。新增工具需要接入宿主约束；切换源码提交需要准备新视图，同一提交则复用已有视图。业务规则仍由原生工具维护。</p>
+<h2>一次测试请求，怎样交付结果</h2>
+<p>一次实际请求是：把测试账号的一项时长参数调整为 <strong>7.99秒</strong>。这条任务的回复记录了以下内容：</p>
+<table>
+<thead>
+<tr>
+<th>交付项</th>
+<th>回复报告的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作目标</td>
+<td>测试环境、账号与唯一目标实例</td>
+</tr>
+<tr>
+<td>数值变化</td>
+<td>6084 → 7990 毫秒</td>
+</tr>
+<tr>
+<td>重新登录后的回读</td>
+<td>7项关联值均为7990毫秒</td>
+</tr>
+<tr>
+<td>备份</td>
+<td>修改前后备份文件的位置</td>
+</tr>
+</tbody></table>
+<h2>实际使用规模</h2>
+<p><strong>2026年10月17日至11月13日</strong>，入口记录了 <strong>38个账号、838条新建任务</strong>，日均约30条；其中614条标记完成。这份记录未完整区分历史自测，“完成”也仅指任务状态。11月7日至13日，26个账号提交了284条任务。</p>
+<p><img src="/wild-builds/assets/introducing-proj-bot/proj-bot-usage-zh.webp" alt="10月17日至11月13日的入口记录：38个账号、838条新任务、614条标记完成；每日任务和活跃账号分别绘图，11月13日为82条任务、18个账号。" /></p>
+</article><div class="article-footer"><a href="/wild-builds/en/posts/introducing-proj-bot/">Read in English →</a></div></main><footer class="site-footer"><p>© 2026 charlie<br>工程实践 · AI 工具 · 构建记录</p><p>Design adapted from <a href="https://github.com/satnaing/astro-paper">AstroPaper</a><br><a href="/wild-builds/theme-license.txt">Theme license</a> · <a href="mailto:charlie.szu@gmail.com">联系</a></p></footer></div></body></html>

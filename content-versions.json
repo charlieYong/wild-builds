@@ -1,1 +1,9 @@
-{"articles":[]}
+{
+  "articles": [
+    {
+      "article_id": "0622a0f0-0ab9-4f66-8a10-5d55084bcbcc",
+      "content_hash": "f7c2c054e005edff156679b38e1b79b0c75f0eddd93b6a3792a4bc49cfdc7140",
+      "slug": "introducing-proj-bot"
+    }
+  ]
+}

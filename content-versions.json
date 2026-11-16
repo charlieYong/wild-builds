@@ -4,6 +4,11 @@
       "article_id": "0622a0f0-0ab9-4f66-8a10-5d55084bcbcc",
       "content_hash": "f7c2c054e005edff156679b38e1b79b0c75f0eddd93b6a3792a4bc49cfdc7140",
       "slug": "introducing-proj-bot"
+    },
+    {
+      "article_id": "47ff831b-4111-43aa-b0fd-240a0de83f45",
+      "content_hash": "9188f47cfb77c8288272f1d8e972f29861aec285f90dde9fd1f4940326f21cc8",
+      "slug": "proj-bot-jenkins-query-path"
     }
   ]
 }

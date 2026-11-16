@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Bot Had Jenkins Tools. Why Couldn’t It Read a Build? · 野生构建 / Wild Builds</title><meta name="description" content="The Bot Had Jenkins Tools. Why Couldn’t It Read a Build?"><meta property="og:title" content="The Bot Had Jenkins Tools. Why Couldn’t It Read a Build?"><meta property="og:type" content="article"><meta name="theme-color" content="#fdfdfd"><meta name="content-version" content="9188f47cfb77c8288272f1d8e972f29861aec285f90dde9fd1f4940326f21cc8"><link rel="canonical" href="https://charlieyong.github.io/wild-builds/en/posts/proj-bot-jenkins-query-path/"><link rel="alternate" type="application/rss+xml" title="野生构建 / Wild Builds" href="/wild-builds/rss.xml"><link rel="alternate" hreflang="zh" href="/wild-builds/zh/posts/proj-bot-jenkins-query-path/"><style>:root{color-scheme:light;--background:#fdfdfd;--foreground:#282728;--accent:#006cac;--muted:#e6e6e6;--muted-foreground:#6b7280;--border:#ece9e9;font-synthesis:none;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,PingFang SC,Microsoft YaHei,monospace}@media (prefers-color-scheme:dark){:root{color-scheme:dark;--background:#212737;--foreground:#eaedf3;--accent:#ff6b01;--muted:#343f60;--muted-foreground:#afb9ca;--border:#48516b}}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{background:var(--background);color:var(--foreground);margin:0;font-size:16px;line-height:1.85}a{color:var(--accent);text-underline-offset:5px;text-decoration:none}a:hover{text-decoration:underline dashed}a:focus-visible,summary:focus-visible{outline:2px dashed var(--accent);outline-offset:5px}.wrap{max-width:800px;margin-inline:auto;padding-inline:28px}.site-header{border-bottom:1px solid var(--border);justify-content:space-between;align-items:center;gap:24px;padding-block:26px;display:flex}.site-title{letter-spacing:-.05em;color:var(--foreground);font-size:22px;font-weight:700;line-height:1.5;text-decoration:none}.site-title small{letter-spacing:.12em;color:var(--muted-foreground);font-size:10px;font-weight:400;display:block}.site-nav{flex-shrink:0;align-items:center;gap:23px;font-size:14px;display:flex}.site-nav a{color:var(--foreground)}main{min-height:65vh;padding-block:58px 64px}h1,h2,h3{letter-spacing:-.04em;line-height:1.5}h1{margin:0 0 26px;font-size:clamp(32px,5vw,43px);font-weight:700}h2{margin:0 0 24px;font-size:23px}h3{margin:0 0 10px;font-size:18px}p{margin:0 0 16px}.intro{font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:18px;line-height:1.95}.eyebrow,.byline,.muted{color:var(--muted-foreground);font-size:12px}.eyebrow{letter-spacing:.12em;margin:0 0 18px}.english-intro{color:var(--muted-foreground);margin-top:20px;font-size:14px}.socials{align-items:center;gap:23px;margin-top:26px;font-size:13px;display:flex}.section{border-top:1px solid var(--border);margin-top:38px;padding-top:34px}.post-list{padding:0;list-style:none}.post-card{padding:0 0 28px}.post-card h3{color:var(--accent)}.post-card p{color:var(--muted-foreground);font-size:13px}.post-languages{gap:15px;margin-top:8px;font-size:12px;display:flex}.empty-state{color:var(--muted-foreground);padding:24px 0 16px;font-size:14px}.empty-state strong{color:var(--foreground);margin-bottom:6px;font-size:16px;font-weight:500;display:block}.topics{color:var(--muted-foreground);flex-wrap:wrap;gap:10px;font-size:12px;display:flex}.topics span{border-bottom:1px dashed var(--border);padding-bottom:3px}.site-footer{border-top:1px solid var(--border);color:var(--muted-foreground);justify-content:space-between;align-items:flex-start;gap:20px;padding-block:24px 36px;font-size:11px;display:flex}.site-footer p{margin:0}.site-footer a{color:var(--muted-foreground)}.prose{overflow-wrap:anywhere;font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:17px;line-height:1.95}.prose h2{margin-top:2.3em;font-family:ui-monospace,Menlo,PingFang SC,monospace}.prose h3{margin-top:1.7em}.prose a{text-decoration:underline dashed}.prose pre{background:var(--muted);border-radius:5px;padding:20px;font-size:13px;line-height:1.65;overflow-x:auto}.prose code{font-family:ui-monospace,Menlo,monospace}.prose :not(pre)>code{background:var(--muted);border-radius:3px;padding:2px 5px;font-size:.85em}.prose blockquote{border-left:3px solid var(--accent);color:var(--muted-foreground);margin:26px 0;padding:3px 0 3px 20px}.prose img{max-width:100%;height:auto}.prose table{border-collapse:collapse;font-size:14px;display:block;overflow:auto}.prose td,.prose th{border-bottom:1px solid var(--border);padding:10px}.article-header{margin-bottom:32px}.article-header h1{margin-bottom:18px;font-size:clamp(28px,4.5vw,38px);line-height:1.55}.back-link{margin-bottom:25px;font-size:12px;display:inline-block}.skip{background:var(--background);padding:8px;position:absolute;top:-100px}.skip:focus{top:5px}.article-footer{border-top:1px solid var(--border);margin-top:48px;padding-top:24px;font-size:13px}.language{font-size:12px}.about-copy{color:var(--muted-foreground);font-family:system-ui,-apple-system,PingFang SC,sans-serif;font-size:14px;line-height:1.9}@media (width<=600px){.wrap{padding-inline:22px}.site-header{gap:15px;padding-block:20px}.site-title{font-size:19px}.site-nav{gap:15px;font-size:12px}main{padding-block:40px 48px}.intro{font-size:17px}h1{font-size:34px}.site-footer{flex-direction:column;gap:9px}.prose{font-size:16px}.prose pre{margin-inline:-5px;padding:15px}.article-header h1{font-size:28px}.socials{gap:19px}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{.site-nav,.socials,.site-footer{display:none}body{color:#000;background:#fff}.wrap{max-width:none}.prose pre{white-space:pre-wrap}}
+</style></head><body><a class="skip" href="#main-content">跳转到正文 / Skip to content</a><div class="wrap"><header class="site-header"><a class="site-title" href="/wild-builds/">野生构建<small>Wild Builds / CHARLIE</small></a><nav class="site-nav" aria-label="主导航"><a href="/wild-builds/#articles">文章</a><a href="/wild-builds/#about">关于</a><a class="language" href="/wild-builds/zh/posts/proj-bot-jenkins-query-path/">中文</a></nav></header><main id="main-content"><a class="back-link" href="/wild-builds/">← Back to essays</a><header class="article-header"><h1>The Bot Had Jenkins Tools. Why Couldn’t It Read a Build?</h1><p class="byline">charlie · <time datetime="2026-11-16T13:14:23.543Z">2026-11-16</time>· English</p></header><article class="prose"><p>A request to investigate an automatic deployment that had not taken effect left proj-bot stuck at the build query. The project already had Jenkins scripts, and the Bot found related entry points. Yet it first hit missing environment configuration, then received:</p>
+<pre><code class="language-text">Tunnel connection failed: 403 Forbidden
+</code></pre>
+<p>proj-bot is a work assistant in the team’s Feishu workspace. Members describe a goal in natural language; the model selects tools, and the host checks execution eligibility. This failure exposed a gap between those layers: <strong>an existing project tool still needed a complete path for the Bot to use it in a read-only investigation.</strong></p>
+<h2>Two failures at different points</h2>
+<p>During this investigation on November 12, 2026, the Bot first ran a deployment script’s status query inside a general tool sandbox. The script needed environment configuration, but the query reported that the required configuration directory was missing and stopped during preparation.</p>
+<p>The Bot then tried reading Jenkins directly and received a 403 while establishing a proxy tunnel. That is different from Jenkins receiving the query and deciding that the account cannot read it.</p>
+<table>
+<thead>
+<tr>
+<th>Attempt</th>
+<th>Observed result</th>
+<th>What to examine next</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Query status inside the general tool sandbox</td>
+<td>Missing environment configuration directory</td>
+<td>Execution location, mounted files, and configuration resolution</td>
+</tr>
+<tr>
+<td>Access Jenkins through the proxy</td>
+<td><code>Tunnel connection failed: 403 Forbidden</code></td>
+<td>The CONNECT request and host-side connection authorization</td>
+</tr>
+</tbody></table>
+<p>These failures need separate fixes. Providing configuration does not establish network access. Changing how an HTTP request is made does not supply the missing environment mapping.</p>
+<h2>Identify the source of the 403</h2>
+<p>An HTTPS client using an HTTP proxy normally sends CONNECT first, asking the proxy to establish a tunnel. Only after that succeeds does the client exchange HTTPS data with the upstream service. <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-connect">RFC 9110’s CONNECT definition</a> distinguishes successful tunnel establishment from failure.</p>
+<p><img src="/wild-builds/assets/proj-bot-jenkins-query-path/proj-bot-jenkins-failure-en.webp" alt="The HTTPS client requests CONNECT from the proxy. A 403 response leaves the tunnel unestablished; the client has not sent the Jenkins query through it." /></p>
+<p>The proxy implementation at the time converted a host-side connection denial into HTTP 403. Together with the tunnel exception, this pointed the investigation toward connection authorization. The error alone did not establish whether the Jenkins account had read access.</p>
+<p>To examine the distinction, I ran a local experiment with Python 3.9.6: an HTTPS service and a CONNECT proxy with switchable behavior. The service used a local certificate, which the client verified. Each case recorded the client result and the number of HTTP requests received upstream.</p>
+<table>
+<thead>
+<tr>
+<th>Local experiment condition</th>
+<th>Client result</th>
+<th>Upstream HTTP requests</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Proxy rejects CONNECT</td>
+<td>Tunnel error, 403</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Proxy allows the tunnel; upstream rejects authentication</td>
+<td>HTTP 401</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Proxy allows the tunnel; authentication succeeds; build failed</td>
+<td>HTTP 200, <code>result=FAILURE</code></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>The third case matters too: <strong>a successful query can return a failed build.</strong> Transport, query access, and build outcome need separate explanations. This local experiment demonstrates the mechanism; it does not measure how many upstream requests occurred in the historical incident.</p>
+<h2>Add an explicit path for read-only investigation</h2>
+<p>At the time, the existing remote deployment entry point performed write checks, while the status entry point followed the service runtime-status workflow. Neither directly supplied build-list or build-log queries.</p>
+<p>The change added build-list, individual-build, build-log, and queue queries to the controlled remote entry point and delegated execution to the native Jenkins query script. The Bot adapter handled session identity, task version, and environment binding. This task version changes as task information is updated, allowing calls based on stale task state to be rejected. The native tool retained environment-to-job mapping, credential resolution, and API requests.</p>
+<p><img src="/wild-builds/assets/proj-bot-jenkins-query-path/proj-bot-jenkins-controlled-en.webp" alt="The model supplies a query action and task version. The host checks identity, version, and the bound environment. The native query tool resolves environment mapping and credentials, reads Jenkins, and returns the result." /></p>
+<p>Two constraints make that path concrete.</p>
+<p>First, the environment comes from the bound task. The adapter rejects attempts to override the environment, host, service, or action through forwarded arguments. A call prepared in one task’s context must not quietly select another target.</p>
+<p>Second, build queries use read checks, while deployment retains write checks. Reading a build record should not require permission to trigger a deployment, and query access should not grant deployment access. <a href="https://www.jenkins.io/doc/book/using/remote-access-api/">Jenkins’ remote API</a> supports both retrieving information and triggering builds; the Bot entry point must preserve that distinction.</p>
+<p>The cost is explicit integration: each additional action needs defined parameters and permission semantics. In return, environment mapping and Jenkins-specific rules keep a clear maintenance owner, and the model does not have to assemble a new connection method during every investigation.</p>
+<h2>Be precise about what acceptance established</h2>
+<p>In the live read-only acceptance run after integration on November 12, a program called the controlled entry point directly under an ordinary member’s identity and retrieved one Jenkins build record. It established that this entry point, target mapping, and read request worked together at that time. This read did not cover natural-language tool selection, write rejection, or target-override tests. It also did not establish that every build-log endpoint worked or that the original automatic deployment issue was fixed.</p>
+<p>The investigation left me with a practical order: establish where the tool runs and which configuration it needs, identify the layer where the connection fails, then check the actual query and business outcome. A script in the project is an available capability. Making it usable by a team assistant also requires a clear path connecting execution location, target, and permissions.</p>
+</article><div class="article-footer"><a href="/wild-builds/zh/posts/proj-bot-jenkins-query-path/">阅读中文版 →</a></div></main><footer class="site-footer"><p>© 2026 charlie<br>工程实践 · AI 工具 · 构建记录</p><p>Design adapted from <a href="https://github.com/satnaing/astro-paper">AstroPaper</a><br><a href="/wild-builds/theme-license.txt">Theme license</a> · <a href="mailto:charlie.szu@gmail.com">联系</a> · <a href="/wild-builds/en/privacy/">Analytics &amp; privacy</a></p></footer></div><script data-analytics-provider="goatcounter">// All helpers live inside this function: Astro serializes it into the static page.
+function bootAnalytics(config, initializeProvider) {
+  try {
+    if (!config || !config.enabled || !config.published || config.provider !== 'goatcounter') return;
+    if (!/^[a-z0-9][a-z0-9-]{1,62}$/.test(config.code)) return;
+    if (location.protocol !== 'https:' || location.hostname !== config.hostname || !location.pathname.startsWith(config.prefix)) return;
+    const params = new URLSearchParams(location.search);
+    const disabled = () => localStorage.getItem('wild-builds.analytics.disabled') === '1' || localStorage.getItem('skipgc') === 't' || navigator.globalPrivacyControl === true || navigator.doNotTrack === '1' || params.get('analytics') === 'off' || params.has('wb_test');
+    if (disabled()) return;
+    const campaign = new URLSearchParams();
+    for (const name of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']) {
+      const value = params.get(name);
+      if (value && /^[a-z0-9][a-z0-9_.:-]{0,119}$/i.test(value)) campaign.set(name,value);
+    }
+    let referrer = '';
+    try { if (document.referrer) referrer = new URL(document.referrer).origin; } catch {}
+    window.goatcounter = { no_onload:true, no_events:true, endpoint:`https://${config.code}.goatcounter.com/count` };
+    initializeProvider();
+    const provider = window.goatcounter;
+    if (!provider || typeof provider.get_data !== 'function' || typeof provider.count !== 'function') return;
+    const original = provider.get_data;
+    provider.get_data = function (vars) {
+      const data = original(vars);
+      data.p = vars && vars.event ? vars.path : location.pathname;
+      data.q = campaign.toString() ? '?' + campaign.toString() : '';
+      data.r = referrer;
+      return data;
+    };
+    const match = location.pathname.match(/\/(zh|en)\/posts\/([a-z0-9-]+)\/?$/);
+    const locale = match ? match[1] : document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+    const slug = match ? match[2] : 'home';
+    const signal = (name) => { if (!disabled()) provider.count({event:true,path:`wb:${name}:${locale}:${slug}`,title:`Wild Builds: ${name}`,no_session:true}); };
+    const start = () => {
+      if (disabled()) return;
+      if (params.get('analytics_probe') === '1') { provider.count({event:true,path:'wb-probe',title:'Studio collection test',no_session:true}); return; }
+      provider.count({path:location.pathname});
+      document.addEventListener('click',event => {
+        const link = event.target && event.target.closest && event.target.closest('a[href]');
+        if (!link || disabled()) return;
+        let target; try { target=new URL(link.href,location.href); } catch { return; }
+        const other = target.pathname.match(/\/(zh|en)\/posts\/([a-z0-9-]+)\/?$/);
+        if (match && target.origin===location.origin && other && other[2]===slug && other[1]!==locale) {
+          signal('language');
+          for (const [name,value] of campaign) target.searchParams.set(name,value);
+          if (campaign.size) target.searchParams.set('utm_content',other[1]);
+          link.href=target.href;
+        } else if (target.protocol==='mailto:') signal('contact');
+        else if (match && target.protocol==='https:' && target.origin!==location.origin && link.closest('main')) signal('outbound');
+      },true);
+      if (!match) return;
+      let active=0,last=performance.now(),engaged=false,scrolled=false;
+      const timer=setInterval(()=>{const current=performance.now();if(document.visibilityState==='visible'&&document.hasFocus())active+=Math.min(1500,Math.max(0,current-last));last=current;if(!engaged&&active>=30000){engaged=true;signal('engaged30');clearInterval(timer);}},1000);
+      for(const event of ['visibilitychange','focus','blur'])addEventListener(event,()=>{last=performance.now();});
+      addEventListener('pagehide',()=>clearInterval(timer),{once:true});
+      addEventListener('scroll',()=>{const height=document.documentElement.scrollHeight;if(!scrolled&&height>innerHeight+64&&(scrollY+innerHeight)/height>=0.75){scrolled=true;signal('scroll75');}},{passive:true});
+    };
+    const visibleStart = () => {
+      if(document.visibilityState==='visible')start();
+      else {const visible=()=>{if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',visible);start();}};document.addEventListener('visibilitychange',visible);}
+    };
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',visibleStart,{once:true});else visibleStart();
+  } catch { /* A blocked tracker never interrupts article reading. */ }
+}
+
+bootAnalytics({"provider":"goatcounter","code":"wild-builds-charlie","hostname":"charlieyong.github.io","prefix":"/wild-builds/","enabled":true,"events_version":"wb-v1","published":true},function(){// GoatCounter: https://www.goatcounter.com
+// This file is released under the ISC license: https://opensource.org/licenses/ISC
+;(function() {
+	'use strict';
+
+	window.goatcounter = window.goatcounter || {}
+
+	// Load settings from data-goatcounter-settings.
+	var s = document.querySelector('script[data-goatcounter]')
+	if (s && s.dataset.goatcounterSettings) {
+		try         { var set = JSON.parse(s.dataset.goatcounterSettings) }
+		catch (err) { console.error('invalid JSON in data-goatcounter-settings: ' + err) }
+		for (var k in set)
+			if (['no_onload', 'no_events', 'allow_local', 'allow_frame', 'path', 'title', 'referrer', 'event'].indexOf(k) > -1)
+				window.goatcounter[k] = set[k]
+	}
+
+	var enc = encodeURIComponent
+
+	// Get all data we're going to send off to the counter endpoint.
+	window.goatcounter.get_data = function(vars) {
+		vars = vars || {}
+		var data = {
+			p: (vars.path     === undefined ? goatcounter.path     : vars.path),
+			r: (vars.referrer === undefined ? goatcounter.referrer : vars.referrer),
+			t: (vars.title    === undefined ? goatcounter.title    : vars.title),
+			e: !!(vars.event || goatcounter.event),
+			s: window.screen.width,
+			b: is_bot(),
+			q: location.search,
+		}
+
+		var rcb, pcb, tcb  // Save callbacks to apply later.
+		if (typeof(data.r) === 'function') rcb = data.r
+		if (typeof(data.t) === 'function') tcb = data.t
+		if (typeof(data.p) === 'function') pcb = data.p
+
+		if (is_empty(data.r)) data.r = document.referrer
+		if (is_empty(data.t)) data.t = document.title
+		if (is_empty(data.p)) data.p = get_path()
+		if (vars.no_session) data.ns = (typeof(vars.no_session) === 'function' ? vars.no_session(false) : vars.no_session)
+
+		if (rcb) data.r = rcb(data.r)
+		if (tcb) data.t = tcb(data.t)
+		if (pcb) data.p = pcb(data.p)
+		return data
+	}
+
+	// Check if a value is "empty" for the purpose of get_data().
+	var is_empty = function(v) { return v === null || v === undefined || typeof(v) === 'function' }
+
+	// See if this looks like a bot; there is some additional filtering on the
+	// backend, but these properties can't be fetched from there.
+	var is_bot = function() {
+		// Headless browsers are probably a bot.
+		var w = window, d = document
+		if (w.callPhantom || w._phantom || w.phantom)
+			return 150
+		if (w.__nightmare)
+			return 151
+		if (d.__selenium_unwrapped || d.__webdriver_evaluate || d.__driver_evaluate)
+			return 152
+		if (navigator.webdriver)
+			return 153
+		return 0
+	}
+
+	// Object to urlencoded string, starting with a ?.
+	var urlencode = function(obj) {
+		var p = []
+		for (var k in obj)
+			if (obj[k] !== '' && obj[k] !== null && obj[k] !== undefined && obj[k] !== false)
+				p.push(enc(k) + '=' + enc(obj[k]))
+		return '?' + p.join('&')
+	}
+
+	// Show a warning in the console.
+	var warn = function(msg) {
+		if (console && 'warn' in console)
+			console.warn('goatcounter: ' + msg)
+	}
+
+	// Get the endpoint to send requests to.
+	var get_endpoint = function() {
+		var s = document.querySelector('script[data-goatcounter]')
+		return (s && s.dataset.goatcounter) ? s.dataset.goatcounter : goatcounter.endpoint
+	}
+
+	// Get current path.
+	var get_path = function() {
+		var loc = location,
+			c = document.querySelector('link[rel="canonical"][href]')
+		if (c) {  // May be relative or point to different domain.
+			var a = document.createElement('a')
+			a.href = c.href
+			if (a.hostname.replace(/^www\./, '') === location.hostname.replace(/^www\./, ''))
+				loc = a
+		}
+		return (loc.pathname + loc.search) || '/'
+	}
+
+	// Run function after DOM is loaded.
+	var on_load = function(f) {
+		if (document.body === null)
+			document.addEventListener('DOMContentLoaded', function() { f() }, false)
+		else
+			f()
+	}
+
+	// Filter some requests that we (probably) don't want to count.
+	window.goatcounter.filter = function() {
+		if ('visibilityState' in document && document.visibilityState === 'prerender')
+			return 'visibilityState'
+		if (!goatcounter.allow_frame && location !== parent.location)
+			return 'frame'
+		if (!goatcounter.allow_local && location.hostname.match(/(localhost$|^127\.|^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.|^0\.0\.0\.0$)/))
+			return 'localhost'
+		if (!goatcounter.allow_local && location.protocol === 'file:')
+			return 'localfile'
+		if (localStorage && localStorage.getItem('skipgc') === 't')
+			return 'disabled with #toggle-goatcounter'
+		return false
+	}
+
+	// Get URL to send to GoatCounter.
+	window.goatcounter.url = function(vars) {
+		var data = window.goatcounter.get_data(vars || {})
+		if (data.p === null)  // null from user callback.
+			return
+		data.rnd = Math.random().toString(36).substr(2, 5)  // Browsers don't always listen to Cache-Control.
+
+		var endpoint = get_endpoint()
+		if (!endpoint)
+			return warn('no endpoint found')
+
+		return endpoint + urlencode(data)
+	}
+
+	// Count a hit.
+	window.goatcounter.count = function(vars) {
+		var f = goatcounter.filter()
+		if (f)
+			return warn('not counting because of: ' + f)
+		var url = goatcounter.url(vars)
+		if (!url)
+			return warn('not counting because path callback returned null')
+
+		if (!navigator || !navigator.sendBeacon || !navigator.sendBeacon(url)) {
+			// This mostly fails due to being blocked by CSP; try again with an
+			// image-based fallback.
+			var img = document.createElement('img')
+			img.src = url
+			img.style.position = 'absolute'  // Affect layout less.
+			img.style.bottom = '0px'
+			img.style.width = '1px'
+			img.style.height = '1px'
+			img.loading = 'eager'
+			img.setAttribute('alt', '')
+			img.setAttribute('aria-hidden', 'true')
+
+			var rm = function() { if (img && img.parentNode) img.parentNode.removeChild(img) }
+			img.addEventListener('load', rm, false)
+			document.body.appendChild(img)
+		}
+	}
+
+	// Get a query parameter.
+	window.goatcounter.get_query = function(name) {
+		var s = location.search.substr(1).split('&')
+		for (var i = 0; i < s.length; i++)
+			if (s[i].toLowerCase().indexOf(name.toLowerCase() + '=') === 0)
+				return s[i].substr(name.length + 1)
+	}
+
+	// Track click events.
+	window.goatcounter.bind_events = function() {
+		if (!document.querySelectorAll)  // Just in case someone uses an ancient browser.
+			return
+
+		var send = function(elem) {
+			return function() {
+				goatcounter.count({
+					event:      true,
+					path:       (elem.dataset.goatcounterClick || elem.name || elem.id || ''),
+					title:      (elem.dataset.goatcounterTitle || elem.title || (elem.innerHTML || '').substr(0, 200) || ''),
+					referrer:   (elem.dataset.goatcounterReferrer || elem.dataset.goatcounterReferral || ''),
+					no_session: ['1', 't', 'true'].indexOf((elem.dataset.goatcounterNoSession || '').toLowerCase()) !== -1,
+				})
+			}
+		}
+
+		Array.prototype.slice.call(document.querySelectorAll("*[data-goatcounter-click]")).forEach(function(elem) {
+			if (elem.dataset.goatcounterBound)
+				return
+			var f = send(elem)
+			elem.addEventListener('click', f, false)
+			elem.addEventListener('auxclick', f, false)  // Middle click.
+			elem.dataset.goatcounterBound = 'true'
+		})
+	}
+
+	// Add a "visitor counter" frame or image.
+	window.goatcounter.visit_count = function(opt) {
+		on_load(function() {
+			opt        = opt        || {}
+			opt.type   = opt.type   || 'html'
+			opt.append = opt.append || 'body'
+			opt.path   = opt.path   || get_path()
+			opt.attr   = opt.attr   || {width: '200', height: (opt.no_branding ? '60' : '80')}
+
+			opt.attr['src'] = get_endpoint() + 'er/' + enc(opt.path) + '.' + enc(opt.type) + '?'
+			if (opt.no_branding) opt.attr['src'] += '&no_branding=1'
+			if (opt.style)       opt.attr['src'] += '&style=' + enc(opt.style)
+			if (opt.start)       opt.attr['src'] += '&start=' + enc(opt.start)
+			if (opt.end)         opt.attr['src'] += '&end='   + enc(opt.end)
+
+			var tag = {png: 'img', svg: 'img', html: 'iframe'}[opt.type]
+			if (!tag)
+				return warn('visit_count: unknown type: ' + opt.type)
+
+			if (opt.type === 'html') {
+				opt.attr['frameborder'] = '0'
+				opt.attr['scrolling']   = 'no'
+			}
+
+			var d = document.createElement(tag)
+			for (var k in opt.attr)
+				d.setAttribute(k, opt.attr[k])
+
+			var p = document.querySelector(opt.append)
+			if (!p)
+				return warn('visit_count: element to append to not found: ' + opt.append)
+			p.appendChild(d)
+		})
+	}
+
+	// Make it easy to skip your own views.
+	if (location.hash === '#toggle-goatcounter') {
+		if (localStorage.getItem('skipgc') === 't') {
+			localStorage.removeItem('skipgc', 't')
+			alert('GoatCounter tracking is now ENABLED in this browser.')
+		}
+		else {
+			localStorage.setItem('skipgc', 't')
+			alert('GoatCounter tracking is now DISABLED in this browser until ' + location + ' is loaded again.')
+		}
+	}
+
+	if (!goatcounter.no_onload)
+		on_load(function() {
+			// 1. Page is visible, count request.
+			// 2. Page is not yet visible; wait until it switches to 'visible' and count.
+			// See #487
+			if (!('visibilityState' in document) || document.visibilityState === 'visible')
+				goatcounter.count()
+			else {
+				var f = function(e) {
+					if (document.visibilityState !== 'visible')
+						return
+					document.removeEventListener('visibilitychange', f)
+					goatcounter.count()
+				}
+				document.addEventListener('visibilitychange', f)
+			}
+
+			if (!goatcounter.no_events)
+				goatcounter.bind_events()
+		})
+})();
+});</script></body></html>

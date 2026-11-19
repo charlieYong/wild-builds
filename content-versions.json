@@ -9,6 +9,11 @@
       "article_id": "47ff831b-4111-43aa-b0fd-240a0de83f45",
       "content_hash": "9188f47cfb77c8288272f1d8e972f29861aec285f90dde9fd1f4940326f21cc8",
       "slug": "proj-bot-jenkins-query-path"
+    },
+    {
+      "article_id": "462dd9ad-b5af-4275-8ad9-daf1acabd725",
+      "content_hash": "ad3b4859865c564c06976a86e7112272a0106adf5ec620a6e916bf0ef63c53a7",
+      "slug": "proj-bot-agent-permission-tests"
     }
   ]
 }

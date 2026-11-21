@@ -14,6 +14,11 @@
       "article_id": "462dd9ad-b5af-4275-8ad9-daf1acabd725",
       "content_hash": "ad3b4859865c564c06976a86e7112272a0106adf5ec620a6e916bf0ef63c53a7",
       "slug": "proj-bot-agent-permission-tests"
+    },
+    {
+      "article_id": "e53de898-9468-4632-851c-24a27598646f",
+      "content_hash": "e5178cd8800be0e6c889eaff72f1229a249fc81f54a8faadfa021b51622f45d9",
+      "slug": "proj-bot-model-overload"
     }
   ]
 }
